@@ -1,0 +1,183 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    list-style-type: none;
+}
+body{
+    width:100%;
+    color: white;
+    font-family: yekan-bakh-bold,sans-serif;
+    overflow: hidden;
+}
+@font-face {
+    font-family: yekan-bakh-Regular;
+    src: url("../font/YekanBakh-Regular.ttf");
+}
+@font-face {
+    font-family: yekan-bakh-SemiBold;
+    src: url("../font/YekanBakh-SemiBold.ttf");
+}
+@font-face {
+    font-family: yekan-bakh-bold;
+    src: url("../font/YekanBakh-Bold.ttf");
+}
+@font-face {
+    font-family: yekan-bakh-ExtraBold;
+    src: url("../font/YekanBakh-ExtraBold.ttf");
+}
+#bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+#bg canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.blur-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    pointer-events: none; /* Ensures that blur-layer doesn't block interactions */
+}
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+h1{
+    font-family: yekan-bakh-SemiBold;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+}
+p{
+    font-family: yekan-bakh-Regular;
+}
+.title-description{
+    word-spacing: 14px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    transition: all ease-in-out .2s;
+}
+figure {
+    width: 400px;
+    aspect-ratio: 8 / 5;
+    --bg: hsl(330 80% calc(90% - (var(--hover) * 10%)));
+    --accent: hsl(138, 56%, 73%);
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    transition: all ease-in-out .2s;
+    cursor: pointer;
+    border: 2px solid rgba(185, 185, 185, 0.443);
+}
+
+figure:after, figure:before {
+    content: "";
+    position: absolute;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(-65deg, var(--bg) 50%, var(--accent) 50%);
+    filter: blur(35px);
+    opacity: 0.7;
+    transition: transform 0.2s, background 0.2s;
+    transform-origin: center;
+    animation: rotateElement 10s linear infinite; /* انیمیشن برای چرخش هر عنصر */
+}
+
+/* موقعیت اولیه برای دایره سمت چپ */
+figure:after {
+    left: 10%;
+    bottom: 0%;
+    animation: orbitLeft 10s linear infinite; /* حرکت چرخشی دایره سمت چپ */
+}
+
+/* موقعیت اولیه برای دایره سمت راست */
+figure:before {
+    right: 10%;
+    bottom: 0%;
+    animation: orbitRight 10s linear infinite; /* حرکت چرخشی دایره سمت راست */
+}
+
+/* انیمیشن چرخش هر عنصر به دور خودش */
+@keyframes rotateElement {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* انیمیشن حرکت چرخشی دایره سمت چپ */
+@keyframes orbitLeft {
+    0% {
+        transform: rotate(0deg) translateX(100px);
+    }
+    100% {
+        transform: rotate(360deg) translateX(100px);
+    }
+}
+
+/* انیمیشن حرکت چرخشی دایره سمت راست */
+@keyframes orbitRight {
+    0% {
+        transform: rotate(360deg) translateX(-100px);
+    }
+    100% {
+        transform: rotate(0deg) translateX(-100px);
+    }
+}
+
+figure:hover{
+    border-radius: 3.5rem;
+}
+a:hover{
+    color: rgb(200, 239, 220) !important;
+}
+img {
+    position: absolute;
+    left: 27%;
+    top: 15%;
+    width: 45%;
+    transform:
+      translateX(calc(var(--hover) * -15%))
+      scale(calc(1 + (var(--hover) * 0.2)));
+    transition: transform 0.2s;
+}
+.col-lg-4:nth-child(2) img{
+    left: 26% !important;
+}
+article p{
+    margin-top: 14px;
+    font-size: 13px !important;
+}
+article {
+    --hover: 0;
+}
+
+article:hover {
+    --hover: 1;
+}
