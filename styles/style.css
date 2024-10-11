@@ -32,7 +32,7 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	z-index: -1;
 }
 
@@ -41,14 +41,14 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 }
 .blur-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 145%;
     backdrop-filter: blur(10px);
     z-index: 1;
     pointer-events: none; /* Ensures that blur-layer doesn't block interactions */
@@ -180,4 +180,68 @@ article {
 
 article:hover {
     --hover: 1;
+}
+/* Responsive styles */
+@media only screen and (max-width: 1200px) {
+    body{
+        overflow:auto;
+        padding-top: 50px;
+    }
+    .col-12{
+        margin-bottom: 50px;
+    }
+    article{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #bg {
+        width: 150%;
+        height: 200vh;
+    }
+    
+    #bg canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150%;
+        height: 200vh;
+    }
+    .blur-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 145%;
+        backdrop-filter: blur(10px);
+        z-index: 1;
+        pointer-events: none; /* Ensures that blur-layer doesn't block interactions */
+    }
+    .content {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    figure {
+        width: 250px;
+    }
+
+    img {
+        left: 30%;
+        top: 20%;
+        width: 40%;
+    }
+    .col-12:nth-child(2) img{
+        left: 31% !important;
+    }
+    article p{
+        font-size: 12px !important;
+    }
+    .title-description{
+        font-size: 14px !important;
+        word-spacing: 1px;
+    }
 }
